@@ -1,8 +1,31 @@
 
+<script>
+  var x = document.getElementById("location");
+  
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+      x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+  }
+  
+  function showPosition(position) {
+    x.innerHTML = "Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude;
+  }
+  </script>
+
 <h1>Location Information</h1>
 
-<p>
-  This is your longitude >> {{ longitude }}
 
-  This is your latitude  >> {{ latitude }}
+<p>
+  This is your longitude with API >> {{ longitude }}
+
+  This is your latitude with API >> {{ latitude }}
 </p>
+
+<button onclick="getLocation()">Try It</button>
+
+<p id="location"></p>
+
